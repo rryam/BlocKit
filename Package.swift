@@ -1,11 +1,11 @@
-// swift-tools-version:6.1
+// swift-tools-version:6.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "BlocKit",
-    platforms: [.iOS(.v26), .visionOS(.v1)],
+    platforms: [.iOS(.v26), .visionOS(.v1), .macOS(.v26)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
