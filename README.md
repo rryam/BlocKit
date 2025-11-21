@@ -1,6 +1,7 @@
-# RRComponentsKit
+# BlocsKit
 
-![RRComponentsKit logo](https://github.com/rudrankriyam/RRComponentsKit/blob/main/RRComponentsKit.gif)
+![BlocsKit logo](https://github.com/rudrankriyam/BlocsKit/blob/main/BlocsKit.gif)
 
+BlocsKit provides reusable UI components and building blocks for color and gradient games.
 
-Reusable components to maintain consistency across all my apps.
+Blocs is French for "blocks" - representing the modular building blocks of UI components.
