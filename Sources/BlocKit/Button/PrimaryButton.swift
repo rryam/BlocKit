@@ -8,55 +8,64 @@
 import SwiftUI
 
 public struct PrimaryGradientButton: View {
-  private var title: String
-  private var action: () -> ()
-  private var color: Color
-  
-  @Environment(\.colorScheme) var scheme
-  
-  var gradient: [Color] {
-    [color.prominence(scheme: scheme), color.prominence(scheme: scheme).opacity(0.8)]
-  }
-  
-  public init(_ title: String, _ color: Color, _ action: @escaping () -> Void) {
-    self.title = title
-    self.color = color
-    self.action = action
-  }
-  
-  public var body: some View {
-    Button(action: action) {
-      Text(title)
-        .foregroundColor(.traitsBackground)
-        .buttonText()
+    private var title: LocalizedStringKey
+    private var action: () -> ()
+    private var color: Color
+
+    public init(_ title: LocalizedStringKey, _ color: Color, _ action: @escaping () -> Void) {
+        self.title = title
+        self.color = color
+        self.action = action
     }
-    .buttonStyle(PrimaryButtonStyle({ LinearGradient(gradient: Gradient(colors: gradient), startPoint: .top, endPoint: .bottom).cornerRadius(Constants.cornerRadius) }))
-  }
+
+    public var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.callout)
+                .bold()
+                .fontWidth(.expanded)
+                .foregroundStyle(Color.white)
+                .frame(maxWidth: .infinity)
+        }
+        .controlSize(.large)
+        .buttonStyle(.glassProminent)
+        .tint(color)
+        .buttonBorderShape(.roundedRectangle(radius: 16))
+        .accessibilityLabel(title)
+        .accessibilityAddTraits(.isButton)
+    }
 }
 
 public struct PrimaryButton: View {
-  private var title: String
-  private var action: () -> ()
-  
-  public init(_ title: String, _ action: @escaping () -> Void) {
-    self.title = title
-    self.action = action
-  }
-  
-  public var body: some View {
-    Button(action: action) {
-      Text(title)
-        .foregroundColor(.white)
-        .buttonText()
+    private var title: LocalizedStringKey
+    private var action: () -> ()
+
+    public init(_ title: LocalizedStringKey, _ action: @escaping () -> Void) {
+        self.title = title
+        self.action = action
     }
-    .buttonStyle(PrimaryButtonStyle({ Color.accentColor.cornerRadius(Constants.cornerRadius) }))
-  }
+
+    public var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.callout)
+                .bold()
+                .fontWidth(.expanded)
+                .foregroundStyle(Color.white)
+                .frame(maxWidth: .infinity)
+        }
+        .controlSize(.large)
+        .buttonStyle(.glassProminent)
+        .buttonBorderShape(.roundedRectangle(radius: 16))
+        .accessibilityLabel(title)
+        .accessibilityAddTraits(.isButton)
+    }
 }
 
-struct ColoredButton_Previews: PreviewProvider {
-  static var previews: some View {
+#Preview {
     VStack {
-      PrimaryButton("Evaluate", {})
+        PrimaryButton("Evaluate", {})
+        PrimaryGradientButton("Next", .blue, {})
     }
-  }
+    .padding()
 }

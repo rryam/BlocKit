@@ -9,64 +9,65 @@ import SwiftUI
 
 public struct SecondaryGradientButton: View {
     private var color: Color
-    private var title: String
+    private var title: LocalizedStringKey
     private var action: () -> ()
     private var disabled: Bool
-    
-    @Environment(\.colorScheme) var scheme
-    
-    var gradient: [Color] {
-        if disabled {
-            return [.gray, .gray.opacity(0.8)]
-        } else {
-            return [color.prominence(scheme: scheme), color.prominence(scheme: scheme).opacity(0.8)]
-        }
-    }
-    
-    public init(title: String, color: Color, disabled: Bool, _ action: @escaping () -> Void) {
+
+    public init(title: LocalizedStringKey, color: Color, disabled: Bool = false, _ action: @escaping () -> Void) {
         self.title = title
         self.color = color
         self.action = action
         self.disabled = disabled
     }
-    
+
     public var body: some View {
         Button(action: action) {
             Text(title)
-                .foregroundColor(color.prominence(scheme: scheme, reverse: true))
-                .buttonText()
+                .font(.callout)
+                .bold()
+                .fontWidth(.expanded)
+                .foregroundStyle(Color.primary)
+                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(SecondaryButtonStyle {
-            RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                .stroke(LinearGradient(gradient: Gradient(colors: gradient), startPoint: .top, endPoint: .bottom), lineWidth: 1.5)
-        })
+        .controlSize(.large)
+        .buttonStyle(.glass)
+        .buttonBorderShape(.roundedRectangle(radius: 16))
+        .tint(disabled ? .gray : color)
+        .accessibilityLabel(title)
+        .accessibilityAddTraits(.isButton)
     }
 }
 
 public struct SecondaryButton: View {
-    private var title: String
+    private var title: LocalizedStringKey
     private var action: () -> ()
-    
-    public init(_ title: String, _ action: @escaping () -> Void) {
+
+    public init(_ title: LocalizedStringKey, _ action: @escaping () -> Void) {
         self.title = title
         self.action = action
     }
-    
+
     public var body: some View {
         Button(action: action) {
             Text(title)
-                .foregroundColor(.primary)
-                .buttonText()
+                .font(.callout)
+                .bold()
+                .fontWidth(.expanded)
+                .foregroundStyle(Color.primary)
+                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(SecondaryButtonStyle {
-            RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                .stroke(Color.accentColor, lineWidth: 1)
-        })
+        .controlSize(.large)
+        .buttonStyle(.glass)
+        .buttonBorderShape(.roundedRectangle(radius: 16))
+        .accessibilityLabel(title)
+        .accessibilityAddTraits(.isButton)
     }
 }
 
-struct SecondaryButton_Previews: PreviewProvider {
-    static var previews: some View {
-        SecondaryButton("Try again", {})
+#Preview {
+    VStack {
+        SecondaryButton("Try Again", {})
+        SecondaryGradientButton(title: "Show Score", color: .blue, disabled: false, {})
     }
+    .padding()
 }
