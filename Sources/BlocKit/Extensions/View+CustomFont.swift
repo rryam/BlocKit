@@ -35,7 +35,7 @@ public extension Font {
 }
 #endif
 
-public enum FontType: String {
+public enum FontType: String, Sendable {
   case montserrat
   case josefinSans
   case poppins
@@ -47,7 +47,7 @@ public enum FontType: String {
   }
 }
 
-public enum FontWeight: String {
+public enum FontWeight: String, Sendable {
   case light
   case medium
   case semiBold

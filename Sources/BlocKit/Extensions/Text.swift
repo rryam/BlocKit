@@ -65,7 +65,7 @@ struct OffsetText<S>: View where S: StringProtocol {
     }
 }
 
-struct CustomFont {
+struct CustomFont: Sendable {
     var type: FontType
     var weight: FontWeight
     var style: UIFont.TextStyle
