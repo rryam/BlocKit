@@ -1,7 +1,7 @@
-# BlocsKit
+# BlocKit
 
-![BlocsKit logo](https://github.com/rudrankriyam/BlocsKit/blob/main/BlocsKit.gif)
+![BlocKit logo](https://github.com/rudrankriyam/BlocKit/blob/main/BlocKit.gif)
 
-BlocsKit provides reusable UI components and building blocks for color and gradient games.
+BlocKit provides reusable UI components and building blocks for color and gradient games.
 
-Blocs is French for "blocks" - representing the modular building blocks of UI components.
+Bloc is French for "block" - representing the modular building blocks of UI components.

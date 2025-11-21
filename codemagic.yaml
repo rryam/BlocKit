@@ -15,12 +15,12 @@ definitions:
             
 workflows:
   rrcomponentskit:
-    name: BlocsKit Workflow
+    name: BlocKit Workflow
     instance_type: mac_mini_m1
     environment:
       xcode: 14.2
       vars:
-        XCODE_SCHEME: BlocsKit
+        XCODE_SCHEME: BlocKit
         DESTINATION: "platform=iOS Simulator,name=iPhone 14"
     triggering:
       <<: *events
