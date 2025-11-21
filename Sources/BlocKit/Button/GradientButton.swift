@@ -26,7 +26,7 @@ public struct GradientButton: View {
     Button(action: action) {
       Text(title)
         .kerning(1.0)
-        .font(type: .poppins, weight: .light, style: .callout)
+        .font(.callout.weight(.light))
     }
     .padding(.bottom)
     .buttonStyle(GradientButtonStyle())

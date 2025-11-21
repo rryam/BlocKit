@@ -10,32 +10,32 @@ import SwiftUI
 extension Text {
     public func customTitleText(size: CGFloat) -> some View {
         self
-            .font(type: .poppins, weight: .black, style: .largeTitle)
+            .font(.largeTitle.weight(.black))
             .multilineTextAlignment(.center)
     }
-    
+
     public func titleText() -> some View {
         self
-            .font(type: .poppins, weight: .bold, style: .title1)
+            .font(.title.weight(.bold))
     }
-    
-    public func largeTitleText(type: FontType, topPadding: CGFloat = 37) -> some View {
+
+    public func largeTitleText(topPadding: CGFloat = 37) -> some View {
         self
-            .font(type: type, weight: .bold, style: .largeTitle)
+            .font(.largeTitle.weight(.bold))
             .foregroundColor(.primary)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, topPadding)
     }
-    
+
     public func buttonText() -> some View {
         self
-            .font(type: .poppins, weight: .bold, style: .headline)
+            .font(.headline.weight(.bold))
             .kerning(1.0)
     }
-    
+
     public func blurredBackgroundText() -> some View {
         self
-            .font(type: .poppins, weight: .regular, style: .caption1)
+            .font(.caption)
             .baselineOffset(1)
             .foregroundColor(.primary)
             .accessibility(addTraits: .isHeader)
@@ -45,33 +45,3 @@ extension Text {
             .background(RoundedRectangle(cornerRadius: Constants.cornerRadius / 1.5).fill(Color.white.opacity(0.25)))
     }
 }
-
-struct OffsetText<S>: View where S: StringProtocol {
-    private var content: S
-    private var font: CustomFont
-    
-    @ScaledMetric(relativeTo: .body) var baselineOffset = 1
-
-    init(_ content: S, font: CustomFont) {
-        self.content = content
-        self.font = font
-    }
-    
-    var body: some View {
-        Text(content)
-            .font(font)
-            .baselineOffset(baselineOffset)
-            .padding(.top, 1)
-    }
-}
-
-struct CustomFont: Sendable {
-    var type: FontType
-    var weight: FontWeight
-    var style: UIFont.TextStyle
-}
-
-extension CustomFont {
-    static let appButton = CustomFont(type: .poppins, weight: .light, style: .caption1)
-}
-

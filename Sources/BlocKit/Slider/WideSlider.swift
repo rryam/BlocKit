@@ -7,36 +7,34 @@
 
 import SwiftUI
 
-struct WideSlider: View {
+public struct WideSlider: View {
     @Binding var value: Double
-    
-    init(_ value: Binding<Double>) {
+    public var color: Color
+    public var step: Double
+    public var accessibilityLabel: LocalizedStringKey
+
+    public init(
+        _ value: Binding<Double>,
+        color: Color = .accentColor,
+        step: Double = 255,
+        accessibilityLabel: LocalizedStringKey = "Value"
+    ) {
         self._value = value
+        self.color = color
+        self.step = step
+        self.accessibilityLabel = accessibilityLabel
     }
-    
-    var colors: [Color] {
-        [.accentColor.opacity(0.8), .accentColor]
+
+    public var body: some View {
+        Slider(value: $value, in: 0...1)
+            .tint(color)
+            .accentColor(color)
+            .accessibilityLabel(accessibilityLabel)
+            .accessibilityValue(Text("\(Int(round(value * step))) out of \(Int(step))"))
+            .accessibilityHint(Text("Swipe up or down to adjust") + Text(" ") + Text(accessibilityLabel) + Text(" from 0 to \(Int(step))"))
     }
-    
-    var body: some View {
-        CustomSlider(value: $value, range: (0, 1)) { modifiers in
-            ZStack(alignment: .center) {
-                
-                LinearGradient(gradient: Gradient(colors: [.traitsBackground]), startPoint: .leading, endPoint: .trailing)
-                    .modifier(modifiers.barRight)
-                    .overlay(RoundedRectangle(cornerRadius: Constants.cornerRadius)
-                                .stroke(Color.stroke))
-                
-                LinearGradient(gradient: Gradient(colors: colors), startPoint: .leading, endPoint: .trailing)
-                    .modifier(modifiers.barLeft)
-                
-                Circle()
-                    .fill(Color.accentColor)
-                    .overlay(Circle().fill(Color.white.opacity(0.15)))
-                    .modifier(modifiers.knob)
-            }
-            .cornerRadius(Constants.cornerRadius)
-        }
-        .frame(height: 25)
-    }
+}
+
+#Preview {
+    WideSlider(.constant(0.5), color: .red, step: 255, accessibilityLabel: "Red")
 }

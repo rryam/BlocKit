@@ -54,12 +54,12 @@ public struct AnalyticsInfoView: View {
         VStack {
             Text(title)
                 .kerning(1)
-                .font(type: .poppins, weight: .light, style: .callout)
+                .font(.callout.weight(.light))
                 .foregroundColor(.primary)
             
             Text(value)
                 .kerning(1)
-                .font(type: .poppins, weight: .bold, style: .title1)
+                .font(.title.weight(.bold))
                 .foregroundColor(color)
         }
         .multilineTextAlignment(.center)
@@ -82,12 +82,12 @@ public struct UserScoreView: View {
                 VStack(spacing: 0) {
                     Text("SCORE".lowercased())
                         .kerning(1)
-                        .font(type: .poppins, weight: .light, style: .callout)
+                        .font(.callout.weight(.light))
                         .foregroundColor(.primary)
                     
                     Text(String(format: "%.2f", score))
                         .kerning(1)
-                        .font(type: .poppins, weight: .bold, style: .title1)
+                        .font(.title.weight(.bold))
                         .accessibility(label: Text("\(String(format: "%.2f", score)) points"))
                         .foregroundColor(color)
                 }

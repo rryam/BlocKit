@@ -18,7 +18,7 @@ public struct NavTitleView: View {
         VStack {
             Text(title)
                 .kerning(1.0)
-                .font(type: .poppins, weight: .bold, style: .headline)
+                .font(.headline.weight(.bold))
                 .accessibility(addTraits: .isHeader)
             Divider()
         }
