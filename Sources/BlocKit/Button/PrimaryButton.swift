@@ -28,7 +28,11 @@ public struct PrimaryGradientButton: View {
                 .frame(maxWidth: .infinity)
         }
         .controlSize(.large)
+        #if os(iOS)
         .buttonStyle(.glassProminent)
+        #else
+        .buttonStyle(.borderedProminent)
+        #endif
         .tint(color)
         .buttonBorderShape(.roundedRectangle(radius: 16))
         .accessibilityLabel(title)
@@ -55,7 +59,11 @@ public struct PrimaryButton: View {
                 .frame(maxWidth: .infinity)
         }
         .controlSize(.large)
+        #if os(iOS)
         .buttonStyle(.glassProminent)
+        #else
+        .buttonStyle(.borderedProminent)
+        #endif
         .buttonBorderShape(.roundedRectangle(radius: 16))
         .accessibilityLabel(title)
         .accessibilityAddTraits(.isButton)

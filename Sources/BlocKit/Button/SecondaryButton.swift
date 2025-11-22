@@ -30,7 +30,11 @@ public struct SecondaryGradientButton: View {
                 .frame(maxWidth: .infinity)
         }
         .controlSize(.large)
+        #if os(iOS)
         .buttonStyle(.glass)
+        #else
+        .buttonStyle(.bordered)
+        #endif
         .buttonBorderShape(.roundedRectangle(radius: 16))
         .tint(disabled ? .gray : color)
         .accessibilityLabel(title)
@@ -57,7 +61,11 @@ public struct SecondaryButton: View {
                 .frame(maxWidth: .infinity)
         }
         .controlSize(.large)
+        #if os(iOS)
         .buttonStyle(.glass)
+        #else
+        .buttonStyle(.bordered)
+        #endif
         .buttonBorderShape(.roundedRectangle(radius: 16))
         .accessibilityLabel(title)
         .accessibilityAddTraits(.isButton)

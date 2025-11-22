@@ -39,12 +39,26 @@ public struct WideStepperButton: View {
                 .foregroundColor(condition ? color : .secondary.opacity(0.5))
                 .frame(width: 32, height: 32)
         }
+        #if os(iOS)
         .buttonStyle(.glass)
+        #else
+        .buttonStyle(.bordered)
+        #endif
         .buttonBorderShape(.circle)
         .disabled(!condition)
         .opacity(condition ? 1.0 : 0.3)
-        .accessibilityLabel((systemName == .plus ? Text("Increase") : Text("Decrease")) + Text(" ") + Text(accessibilityLabel))
-        .accessibilityHint(Text("Double tap to ") + (systemName == .plus ? Text("increase") : Text("decrease")) + Text(" ") + Text(accessibilityLabel) + Text(" by one"))
+        .accessibilityLabel(accessibilityLabelText)
+        .accessibilityHint(accessibilityHintText)
+    }
+
+    private var accessibilityLabelText: Text {
+        let actionText = systemName == .plus ? Text("Increase") : Text("Decrease")
+        return actionText + Text(" ") + Text(accessibilityLabel)
+    }
+
+    private var accessibilityHintText: Text {
+        let actionText = systemName == .plus ? Text("increase") : Text("decrease")
+        return Text("Double tap to ") + actionText + Text(" ") + Text(accessibilityLabel) + Text(" by one")
     }
 }
 

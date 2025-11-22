@@ -58,7 +58,11 @@ public struct GlassHeaderViewModifier: ViewModifier {
             .padding(.top, 1)
             .padding(.horizontal)
             .padding(8)
+            #if os(iOS)
             .glassEffect(.clear.tint(.black.opacity(0.3)), in: .rect(cornerRadius: 8))
+            #else
+            .background(.black.opacity(0.3), in: .rect(cornerRadius: 8))
+            #endif
             .padding(8)
     }
 }
