@@ -1,4 +1,6 @@
 # BlocKit
+[![Star History Chart](https://api.star-history.com/svg?repos=rryam/BlocKit&type=Date)](https://star-history.com/#rryam/BlocKit&Date)
+
 
 ![BlocKit logo](https://github.com/rudrankriyam/BlocKit/blob/main/BlocKit.gif)
 
